@@ -6,6 +6,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 }
