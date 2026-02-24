@@ -9,7 +9,7 @@ const UserDashboard = () => {
     const fetchFleet = async () => {
         try {
             setLoading(true);
-            const res = await fetch('http://localhost:5000/api/fleet');
+            const res = await fetch('/api/fleet');
             if (!res.ok) throw new Error('Failed to fetch fleet data');
             const data = await res.json();
             setFleet(data);

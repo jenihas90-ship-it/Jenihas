@@ -24,7 +24,7 @@ app.get('/api/fleet', (req, res) => {
 // POST add new airplane
 app.post('/api/fleet', (req, res) => {
   const { name, registration, type, status } = req.body;
-  
+
   if (!name || !registration || !type || !status) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
@@ -73,6 +73,12 @@ app.delete('/api/fleet/:id', (req, res) => {
   res.status(204).send();
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Export the Express API
+module.exports = app;
+
+// Only listen locally if not running on Vercel
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}

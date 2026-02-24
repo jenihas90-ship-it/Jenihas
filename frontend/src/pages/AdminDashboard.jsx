@@ -9,7 +9,7 @@ const AdminDashboard = () => {
 
     const fetchFleet = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/fleet');
+            const res = await fetch('/api/fleet');
             const data = await res.json();
             setFleet(data);
         } catch (err) {
@@ -26,7 +26,7 @@ const AdminDashboard = () => {
     const toggleStatus = async (id, currentStatus) => {
         const newStatus = currentStatus === 'Active' ? 'Needs Maintenance' : 'Active';
         try {
-            await fetch(`http://localhost:5000/api/fleet/${id}/status`, {
+            await fetch(`/api/fleet/${id}/status`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus })
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
     const removePlane = async (id) => {
         if (!window.confirm('Are you sure you want to remove this airplane from the fleet log?')) return;
         try {
-            await fetch(`http://localhost:5000/api/fleet/${id}`, { method: 'DELETE' });
+            await fetch(`/api/fleet/${id}`, { method: 'DELETE' });
             fetchFleet();
         } catch (err) {
             console.error(err);
@@ -50,7 +50,7 @@ const AdminDashboard = () => {
     const handleAddPlane = async (e) => {
         e.preventDefault();
         try {
-            await fetch(`http://localhost:5000/api/fleet`, {
+            await fetch(`/api/fleet`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newPlane)
